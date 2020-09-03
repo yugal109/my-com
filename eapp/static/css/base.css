@@ -1,0 +1,396 @@
+/**
+      * Demo Styles
+      */
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.demo {
+  margin: 0 auto;
+  padding-top: 64px;
+  max-width: 640px;
+  width: 94%;
+}
+
+.demo h1 {
+  margin-top: 0;
+}
+
+/**
+      * Footer Styles
+      */
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}
+.navbar {
+  top: 0;
+  background-color: white;
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 600;
+  font-style: normal;
+  font-size: 1.2em;
+  color: grey;
+  margin-bottom: 100px;
+}
+.navbar-brand {
+  font-size: 2em;
+}
+.nav-item {
+  padding-left: 2em;
+}
+.topnav {
+  background-color: white;
+  overflow: hidden;
+  height: 6em;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  margin: 4px;
+  padding: 4px;
+  float: right;
+  display: block;
+  color: black;
+
+  text-decoration: none;
+  font-size: 17px;
+}
+.topnav div {
+  margin: 4px;
+  padding: 4px;
+
+  display: block;
+  color: black;
+
+  text-decoration: none;
+  font-size: 17px;
+}
+#cart-logo {
+  font-size: 0.6em;
+  border: 1px solid grey;
+  padding: 20px;
+  border-radius: 45px;
+}
+
+/* Change the color of links on hover */
+
+/* Add an active class to highlight the current page */
+
+/* Hide the link that should open and close the topnav on small screens */
+.topnav .icon {
+  display: none;
+}
+.search {
+  padding: 5px;
+}
+
+.hamburger-menu-btn {
+  position: fixed;
+  top: 5px;
+  margin-bottom: 10px;
+  left: 10px;
+  height: 45px;
+  width: 50px;
+  text-align: center;
+  background-color: #232f3e;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: left 0.4s ease;
+  z-index: 3;
+}
+.fa-caret-down {
+  font-size: 17px;
+}
+
+.hamburger-menu-btn.click span::before {
+  content: "\f00d";
+}
+
+.hamburger-menu-btn span {
+  color: white;
+  font-size: 25px;
+  line-height: 45px;
+  z-index: 2;
+}
+
+.sidebar {
+  z-index: 3;
+  position: fixed;
+  width: 280px;
+  height: 100%;
+  left: -280px;
+  background-color: #232f3e;
+  overflow-y: scroll;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background-color: #232f3e;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #3a4858;
+  border-radius: 5px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background-color: #131921;
+}
+
+.sidebar.show {
+  left: 0px;
+  transition: left 0.4s ease;
+}
+aside ul {
+  background-color: #131921;
+  height: 100%;
+  width: 100%;
+  list-style-type: none;
+}
+
+aside ul li {
+  line-height: 50px;
+  border-bottom: 1px solid rgba(225, 225, 225, 0.1);
+}
+
+aside ul li a {
+  position: relative;
+  color: white;
+  font-size: 16px;
+  padding-left: 1px;
+  display: block;
+  width: 100%;
+}
+
+aside ul li a:hover {
+  color: cyan;
+  border-left: 3px solid cyan;
+}
+
+aside ul ul {
+  position: static;
+  display: none;
+}
+
+/* for clothing */
+aside ul .dropdown-showclothing.show {
+  display: block;
+}
+/* shirt*/
+aside ul .dropdown-showclothing-shirt.show {
+  display: block;
+}
+aside ul .dropdown-showclothing-shirt-brand.show {
+  display: block;
+}
+aside ul .dropdown-showclothing-shirt-material.show {
+  display: block;
+}
+/* pant */
+aside ul .dropdown-showclothing-pant.show {
+  display: block;
+}
+aside ul .dropdown-showclothing-pant-brand.show {
+  display: block;
+}
+aside ul .dropdown-showclothing-pant-material.show {
+  display: block;
+}
+/* belt */
+aside ul .dropdown-showclothing-belt.show {
+  display: block;
+}
+aside ul .dropdown-showclothing-belt-material.show {
+  display: block;
+}
+/* shoes */
+aside ul .dropdown-showclothing-shoes.show {
+  display: block;
+}
+aside ul .dropdown-showclothing-shoes-brand.show {
+  display: block;
+}
+aside ul .dropdown-showclothing-shoes-material.show {
+  display: block;
+}
+/* jacket */
+aside ul .dropdown-showclothing-jacket.show {
+  display: block;
+}
+aside ul .dropdown-showclothing-jacket-brand.show {
+  display: block;
+}
+aside ul .dropdown-showclothing-jacket-material.show {
+  display: block;
+}
+
+/* t-shirt */
+aside ul .dropdown-showclothing-t-shirt.show {
+  display: block;
+}
+aside ul .dropdown-showclothing-t-shirt-brand.show {
+  display: block;
+}
+aside ul .dropdown-showclothing-t-shirt-material.show {
+  display: block;
+}
+/* coat */
+aside ul .dropdown-showclothing-coat.show {
+  display: block;
+}
+aside ul .dropdown-showclothing-coat-brand.show {
+  display: block;
+}
+aside ul .dropdown-showclothing-coat-material.show {
+  display: block;
+}
+
+/* for electronics*/
+aside ul .dropdown-showelectronics.show {
+  display: block;
+}
+/* camera */
+aside ul .dropdown-showelectronics-camera.show {
+  display: block;
+}
+
+/* laptop */
+aside ul .dropdown-showelectronics-laptop.show {
+  display: block;
+}
+
+/* pc */
+aside ul .dropdown-showelectronics-pc.show {
+  display: block;
+}
+
+/* tv */
+aside ul .dropdown-showelectronics-tv.show {
+  display: block;
+}
+
+/* mobile phones */
+aside ul .dropdown-showmobilephones.show {
+  display: block;
+}
+/* accessories */
+aside ul .dropdown-showaccessories.show {
+  display: block;
+}
+aside ul .dropdown-showaccessories-watch.show {
+  display: block;
+}
+aside ul .dropdown-showaccessories-watch-brand.show {
+  display: block;
+}
+
+/* bathroomitems  */
+aside ul .dropdown-showbathroomitems.show {
+  display: block;
+}
+/* householditems  */
+aside ul .dropdown-showhouseholditems.show {
+  display: block;
+}
+/* stationeryitems  */
+aside ul .dropdown-showstationeryitems.show {
+  display: block;
+}
+aside ul ul li {
+  line-height: 30px;
+  border-bottom: none;
+}
+
+aside ul ul li a {
+  font-size: 15px;
+  color: #e6e6e6;
+  padding-left: 15px;
+}
+aside ul ul li ul li a {
+  font-size: 15px;
+  color: #e6e6e6;
+  padding-left: 30px;
+}
+aside ul ul li ul li ul li a {
+  font-size: 15px;
+  color: #e6e6e6;
+  padding-left: 50px;
+}
+
+aside ul li a {
+  width: 50%;
+  display: inline-block;
+}
+
+aside ul li span {
+  margin: 1em;
+  float: right;
+  color: white;
+}
+
+aside ul li span:hover {
+  color: cyan;
+  cursor: pointer;
+}
+
+aside span.rotate {
+  transform: rotate(-180deg);
+}
+.cart {
+  font-size: 30px;
+
+  color: black;
+}
+.cart:hover {
+  color: black;
+}
+
+.fas span {
+  background: #fb2056;
+  white-space: pre;
+  color: #fff;
+  padding: 5px;
+  font-size: 10px;
+  border-radius: 50%;
+  vertical-align: top;
+  margin-left: -5px;
+}
+
+.navbar {
+  display: block !important;
+  min-height: 54px;
+}
+.pull-right {
+  float: right !important;
+}

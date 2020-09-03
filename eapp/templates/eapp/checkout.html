@@ -1,0 +1,247 @@
+{% extends 'eapp/base.html' %}{% load static %} 
+<!-- dsfa -->
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+
+<style>
+  .alert{
+    border-radius:0px
+  }
+  .form-control{
+    border-radius:0px
+  }
+</style>
+
+{% endblock css %}
+
+{% block content %}
+
+{% if messages %}
+<ul id="alert" class="messages" style="margin-top:60px">
+  {% for message in messages %}
+  <div >
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      {{message}}
+
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  {% endfor %}
+</ul>
+{% endif %}<br />
+
+
+
+<input id="cartvaluecheckout" type="hidden"  value="{{total}}">
+
+
+<div class="container" >
+  <span  class="badge badge-white" style="font-size:2em;border-radius:0px,mt-5;color:white">padding</span><br>
+
+  <span  class="badge badge-info" style="font-size:2em;border-radius:0px;margin-top:20px;">Checkout Form</span><br>
+  
+  <form method="POST" class="mt-3"  >
+    {% csrf_token %}
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">First Name</label><span style="color:red">*</span>
+        <input
+          name="first_name"
+          type="text"
+          class="form-control"
+          id="first_name"
+          maxlength="20"
+          required
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputPassword4">Last Name</label><span style="color:red">*</span>
+        <input
+          name="last_name"
+          type="text"
+          class="form-control"
+          id="last_name"
+          maxlength="20"
+          required
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputAddress">Address</label><span style="color:red">*</span>
+      <input
+        type="text"
+        name="address1"
+        class="form-control"
+        id="address1"
+        placeholder="1234 Main St"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="inputAddress2">Address 2</label><span style="color:red">*</span>
+      <input
+        name="address2"
+        type="text"
+        class="form-control"
+        id="address2"
+        placeholder="Apartment, studio, or floor"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="inputAddress2">Phone Number</label>
+      <small style="color:red">(This field must contain 10 numbers.)</small><span style="color:red">*</span>
+      <input
+        type="text"
+        name="phonenumber"
+        class="form-control"
+        id="phonenumber"
+        placeholder="Phone number"
+        minlength=10
+        maxlength=10
+        required
+        
+        
+      />
+      
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCity">City</label><span style="color:red">*</span>
+        <input name="city" type="text" class="form-control" id="city" required maxlength="20" />
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputState">State</label><span style="color:red">*</span>
+        <input name="state" type="text" class="form-control" id="state" required maxlength="20"/>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputState">Price</label><span style="color:red">*</span>
+        <input name="price" type="text" class="form-control" id="inputCity" value="{{tot_price}}" readonly />
+      </div>
+    </div>
+
+    <button type="submit" id="place_order" class="btn btn-primary">Place Order</button>
+  </form>
+</div>
+
+
+<div class="container-fluid foot" 
+style="color:white;;
+background-color:rgb(43, 100, 100);margin-bottom:-120px;margin-top:100px">
+
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left;">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+     
+     
+      <!-- Grid column -->
+
+
+        <!-- Links -->
+<div class="container">
+
+        
+
+      </div>    
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+    
+
+      <!-- Grid column -->
+    
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div style="margin-top:20px">
+  <!-- Footer Links -->
+  <ul class="list-unstyled list-inline " style="margin-top:20px">
+    <h3 style="font-weight:600">FOOTER CONTENT</h3><br> 
+    <div style="display:inline-block">
+    LINKS 1:
+    <LI>FAQ'S </LI>
+    <li>
+       associated companies
+    </li>
+  </div>
+ 
+    
+  </ul>
+  
+  <!-- Call to action -->
+
+  <hr style="background-color:#cfcfcf">
+
+  <!-- Social buttons -->
+  <ul class="list-unstyled list-inline text-center">
+    <li>
+      <h3 style="font-weight:600">Follow Us On :</h3><br> 
+    </li>
+    <li class="list-inline-item">
+      <a class="btn-floating btn-fb mx-1">
+        <i class="fab fa-facebook-f"> </i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a class="btn-floating btn-tw mx-1">
+        <i class="fab fa-twitter"> </i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a class="btn-floating btn-gplus mx-1">
+        <i class="fab fa-google-plus-g"> </i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a class="btn-floating btn-li mx-1">
+        <i class="fab fa-linkedin-in"> </i>
+      </a>
+    </li>
+    <li class="list-inline-item">
+      <a class="btn-floating btn-dribbble mx-1">
+        <i class="fab fa-instagram"> </i>
+      </a>
+    </li>
+  </ul>
+  <!-- Social buttons -->
+
+  <!-- Call to action -->
+
+  <hr style="background-color:#cfcfcf;margin-top:20px">
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a style="color:white" href="https://yugcommerce.com/"> yugcommerce.com</a>
+  </div>
+  <!-- Copyright -->
+
+</div>
+
+</div>
+{% endblock content %}
+{% block js %}
+<script >
+  let alert = document.getElementById("alert");
+  setTimeout(() => {
+    alert.innerHTML = "";
+  }, 3000);
+  let cartnumbers = document.getElementById("cartvaluecheckout").value;
+  console.log(cartnumbers);
+  console.log($("#cartnumber").text(cartnumbers)) 
+ </script>
+
+
+{% endblock js%}

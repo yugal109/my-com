@@ -1,0 +1,22 @@
+{% extends 'eapp/base.html' %} {% load static %} {% block css %}
+
+<!-- CSS FOR SIDE BAR,IF IT IS NOT HERE SIDE BAR COLLAPSES  -->
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+
+<!-- CSS  -->
+<link rel="stylesheet" href="{% static 'css/shop.css' %}" />
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
+/>
+
+<!-- This is nice -->
+{% endblock css %}{% block content %}
+<input id="cartvaluehome" type="hidden" value="{{total}}" />
+{% include 'eapp/top.html' %}
+<!-- asdasdasd -->
+{% endblock content %} {% block js %}
+
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock js %}

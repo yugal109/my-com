@@ -1,0 +1,17 @@
+{% extends 'eapp/base.html' %} {% load static %}
+<!-- This is css -->
+{% block css %}
+
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+
+{% endblock css %} {% block content %}
+
+<form method="POST">
+  {% csrf_token %}
+  <div style="margin-top: 100px" class="container">
+    Review:{{form.comment}}
+
+    <button type="submit" class="btn btn-success mt-5">Update</button>
+  </div>
+</form>
+{% endblock %}

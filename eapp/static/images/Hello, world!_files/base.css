@@ -1,0 +1,11 @@
+body {
+  font-weight: 500;
+  font-family: "Courier monospace";
+  font-size: 25px;
+}
+.nav-item {
+  padding-left: 2em;
+}
+#idtext {
+  font-size: 10px;
+}

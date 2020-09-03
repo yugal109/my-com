@@ -1,0 +1,75 @@
+{% extends 'eapp/base.html' %} {% load static %}{% load socialaccount %}
+<!-- sdfsdffds -->
+{% providers_media_js %}
+<!-- fdfaf -->
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/regist.css' %}" />
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+<style>
+  body {
+    background-image: linear-gradient(
+        rgba(78, 77, 76, 0.657),
+        rgba(78, 77, 76, 0.657)
+      ),
+      url("/static/css/newbg.jpg");
+  }
+</style>
+{% endblock css %}
+
+<!-- adfdfwf -->
+{% block content %} {% if messages %} {% for message in messages %}
+<div id="alert">
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{message}}
+
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+{% endfor %} {% endif %}<br />
+
+<input id="cartvaluehome" type="hidden" value="{{total}}" />
+
+<div class="container">
+  <hr />
+  <div
+    class="container-fluid"
+    style="border: 1px solid white; margin: 70px auto; width: fit-content"
+  >
+    <article class="card-body mx-auto" style="max-width: 400px">
+      <h4 style="color: white" class="card-title mt-3 text-center">
+        Login Page
+      </h4>
+
+      <form method="POST" style="color: white">
+        {% csrf_token %} Are you sure you want to logout?
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-info btn-block">Logout</button>
+        </div>
+        <div class="form-group">
+          <a href="{% url 'ehomefirst' %}">
+            <input
+              type="button"
+              class="btn btn-success btn-block"
+              value="Cancel"
+          /></a>
+        </div>
+      </form>
+    </article>
+  </div>
+</div>
+
+{% include 'eapp/footer.html' %} {% endblock content %} {% block js %}
+<script>
+  let cartnumbers = document.getElementById("cartvaluehome").value;
+  console.log(cartnumbers);
+  console.log($("#cartnumber").text(cartnumbers));
+  let alert = document.getElementById("alert");
+  setTimeout(() => {
+    alert.innerHTML = "";
+  }, 3000);
+</script>
+
+{% endblock js%}

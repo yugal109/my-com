@@ -1,0 +1,191 @@
+{% extends 'eapp/base.html' %} {% load static %}
+{% load socialaccount %}
+<!-- sdfsdffds -->
+{% providers_media_js %}
+
+ {% block css %}
+<link rel="stylesheet" href="{% static 'css/regist.css' %}" />
+<style>
+  .alert{
+    border-radius:0px
+  }
+  .form-control{
+    border-radius:0px
+  }
+  .btn{
+
+    border-radius: 0px;
+  }
+ 
+</style>
+{% endblock css %} {% block content %}
+
+
+{% if messages %}
+<ul class="messages" style="margin-top:62px">
+  {% for message in messages %}
+  <div id="alert">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      {{message}}
+
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  {% endfor %}
+</ul>
+{% endif %}
+
+
+<input id="cartvalueregister" type="hidden"  value="{{total}}">
+
+
+<div class="container" style="margin-top:100px">
+  
+  <div
+  class="container-fluid"
+  style="border: 1px solid white; margin: 100px auto; width: fit-content;"
+>
+    <article class="card-body mx-auto" style="max-width: 400px;">
+      <h4
+        style="color: white; "
+        class="card-title mt-3 text-center"
+      >
+        Create Account
+      </h4>
+      <p style="color: white; " class="text-center">
+        Get started with your free account
+      </p>
+     <p>
+      <a
+      href="{% provider_login_url 'facebook' method='oauth2' %}"
+      class="btn btn-block btn-primary btn-facebook"
+    >
+      <i class="fab fa-facebook-f"></i> Login via Facebook</a
+    >
+    <a
+      href="{% provider_login_url 'google' %}"
+      class="btn btn-block btn-success btn-google"
+    >
+    <i class="fab fa-google"></i> Login via Google</a
+    >
+     </p>
+     <h1 style="color:white;text-align:center">OR</h1>
+    
+      <form method="POST">{% csrf_token %}
+        
+        <div class="form-group input-group" style="z-index:0;">
+          <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+           </div>
+            {{form.first_name}}
+        </div>
+        <div class="form-group input-group" style="z-index:0;">
+          <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+           </div>
+            {{form.last_name}}
+        </div>
+        <div class="form-group input-group" style="z-index:0;">
+          <div class="input-group-prepend">
+              <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+           </div>
+            {{form.username}}
+            <small
+              type="text"
+              id=""
+              class="form-text  invalid-feedback"
+              
+            >
+              Username must contain 2-20 characters and mustnot use special
+              characters.
+            </small>
+      
+        
+        </div>
+     
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+         </div>
+          {{form.email}}
+          <small
+            type="text"
+            id="passwordHelpBlock"
+            class="form-text  invalid-feedback"
+            
+          >
+           Email is not valid.
+          </small>
+    
+      
+      </div>
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+         </div>
+          {{form.password1}}
+          <small
+            type="text"
+            id="passwordHelpBlock"
+            class="form-text  invalid-feedback"
+            
+          >
+            Your password must contain atleast 8 characters.
+          </small>
+    
+      
+      </div>
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+         </div>
+          {{form.password2}}
+          <small
+            type="text"
+            id="passwordHelpBlock"
+            class="form-text  invalid-feedback"
+            
+          >
+            Both password don't match.
+          </small>
+    
+      
+      </div>
+       <div class="form-group">
+                <button type="submit" class="btn btn-dark btn-block"> Create Account  </button>
+            </div> <!-- form-group// -->      
+            <p style="color:white" class="text-center">Have an account? <a role="button" class="btn btn-danger" style="color:white;border-radius:0px" href="{% url 'loginPage' %}">Log In</a> </p>  
+      </div>
+      
+      </form>
+    </article>
+  </div>
+
+{% include 'eapp/footer.html' %}
+
+
+<!--container end.//-->
+{% endblock content %} {% block js %}
+<script >
+  var elelist = document.getElementById("username")
+      elelist.blur();
+  
+  let cartnumbers = document.getElementById("cartvalueregister").value;
+  console.log(cartnumbers);
+  console.log($("#cartnumber").text(cartnumbers)) 
+
+
+  let alert = document.getElementById("alert");
+  setTimeout(() => {
+    alert.innerHTML = "";
+  }, 50000);
+  
+ </script>
+<script src="{% static 'js/register.js'%}"></script>
+{% endblock js%}

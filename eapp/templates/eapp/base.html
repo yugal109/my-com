@@ -1,0 +1,753 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
+    /> <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+  />
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block css %}{% endblock css %}
+    <title>Yug-Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  </head>
+  <body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light" style="color: white;">
+     
+      <button
+        class="navbar-toggler pull-right "
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      
+      <!-- <a class="navbar-brand" href="#">Category Wise</a> -->
+
+      <div class="collapse navbar-collapse mx-4" id="navbarNavDropdown">
+       
+        <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item my-2">
+            <span style="color:white">Margin Up</span>
+          </li>
+          <li class="nav-item active ">
+            <a class="nav-link" href="{% url 'ehomefirst' %}">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'ehome' %}">Shop</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Contact Us</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'logoutPage' %}">Logout</a>
+          </li>
+
+          {% else %}
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'loginPage' %}">Login</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'registerPage' %}">Register</a>
+          </li>
+
+          {% endif %}
+            <li class="nav-item active " style="margin-top:10px">
+            {% if user.is_authenticated %}
+              <a href="{% url 'eorderview' %}"
+              ><i  class="fas fa-shopping-cart cart"><span class="blah" id="cartnumber">  0  </span></i></a>
+            {% else %}
+            <a href="{% url 'eorderviewanonymus' %}"
+              ><i  class="fas fa-shopping-cart cart"><span class="blah" id="cartnumber">  0  </span></i></a>
+              {% endif %}
+        </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- TOP 3 LINES BUTTON -->
+    <div class="hamburger-menu-btn" style="color:white">
+      <span class="fas fa-bars" style="font-size: 1em; color: white;z-index:2">
+        </span
+      >
+    </div>
+
+    <!-- SIDE BAR  -->
+    <aside class="sidebar" style="z-index:2;margin-top:60px">
+      <ul>
+        
+        <span  class="badge badge-primary" style="font-size:1.5em;border-radius:0px;margin-top:20px;">Shop category wise</span><br>
+        
+        <!-- FOR CLOTHING -->
+        <li class="mt-2 ml-2">
+          <a href="/category/Clothing/">
+            Clothing
+          </a>
+          <span
+            class="fas fa-caret-down ROTATEclothing dropdown-btn-Clothing"
+          ></span>
+
+          <ul class="dropdown-showclothing">
+            <!-- SHIRT -->
+            <li>
+              <a href="/subcategory/Shirt">Shirt </a>
+              <span
+                style="margin-top: 5px; float: unset;"
+                class="fas fa-caret-down ROTATEshirt dropdown-btn-Clothing-Shirt"
+              ></span>
+              <ul class="dropdown-showclothing-shirt">
+                <li>
+                  <a href="#">Brand </a>
+                  <span
+                    style="margin-top: 5px; float: unset;"
+                    class="fas fa-caret-down ROTATEshirtbrand dropdown-btn-Clothing-Shirt-Brand"
+                  ></span>
+                  <ul class="dropdown-showclothing-shirt-brand">
+                    <li>
+                      <a href="/subcategory/Shirt/brand/Gucci"> Gucci </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Shirt/brand/Louis Vitton">
+                        Louis Vitton
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Shirt/brand/Underarmour">
+                        Underarmour
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Shirt/brand/Others"> Others </a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Material </a>
+                  <span
+                    style="margin-top: 5px; float: unset;"
+                    class="fas fa-caret-down ROTATEshirtmaterial dropdown-btn-Clothing-Shirt-Material"
+                  ></span>
+                  <ul class="dropdown-showclothing-shirt-material">
+                    <li>
+                      <a href="/subcategory/Shirt/material/Wollen"> Wollen </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Shirt/material/Cotton"> Cotton </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Shirt/material/Polyster">
+                        Polyster
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/material/Shirt/Others"> Others </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+
+            <!-- PANT -->
+            <li>
+              <a href="/subcategory/Pant">Pant </a>
+              <span
+                style="margin-top: 5px; float: unset;"
+                class="fas fa-caret-down ROTATEpant dropdown-btn-Clothing-Pant"
+              ></span>
+              <ul class="dropdown-showclothing-pant">
+                <li>
+                  <a href="#">Brand </a>
+                  <span
+                    style="margin-top: 5px; float: unset;"
+                    class="fas fa-caret-down ROTATEpantbrand dropdown-btn-Clothing-Pant-Brand"
+                  ></span>
+                  <ul class="dropdown-showclothing-pant-brand">
+                    <li><a href="/subcategory/Pant/brand/Gucci"> Gucci </a></li>
+                    <li>
+                      <a href="/subcategory/Pant/brand/Louis Vitton">
+                        Louis Vitton
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Pant/brand/Underarmour">
+                        Underarmour
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Pant/brand/Others"> Others </a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Material </a>
+                  <span
+                    style="margin-top: 5px; float: unset;"
+                    class="fas fa-caret-down ROTATEpantmaterial dropdown-btn-Clothing-Pant-Material"
+                  ></span>
+                  <ul class="dropdown-showclothing-pant-material">
+                    <li>
+                      <a href="/subcategory/Pant/material/Wollen"> Wollen </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Pant/material/Cotton"> Cotton </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Pant/material/Polyster">
+                        Polyster
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Pant/material/Others"> Others </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+
+            <!-- BELT -->
+            <li>
+              <a href="/subcategory/Belt">Belt </a>
+              <span
+                style="margin-top: 5px; float: unset;"
+                class="fas fa-caret-down ROTATEbelt dropdown-btn-Clothing-Belt"
+              ></span>
+              <ul class="dropdown-showclothing-belt">
+                <li>
+                  <a href="#">Material </a>
+                  <span
+                    style="margin-top: 5px; float: unset;"
+                    class="fas fa-caret-down ROTATEbeltmaterial dropdown-btn-Clothing-Belt-Material"
+                  ></span>
+                  <ul class="dropdown-showclothing-belt-material">
+                    <li>
+                      <a href="/subcategory/Belt/material/Leather"> Leather </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Belt/material/Cloth"> Cloth </a>
+                    </li>
+
+                    <li>
+                      <a href="/subcategory/Belt/material/Others"> Others </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+
+            <!-- SHOES -->
+            <li>
+              <a href="#">Shoes </a>
+              <span
+                style="margin-top: 5px; float: unset;"
+                class="fas fa-caret-down ROTATEshoes dropdown-btn-Clothing-Shoes"
+              ></span>
+              <ul class="dropdown-showclothing-shoes">
+                <li>
+                  <a href="#">Brand </a>
+                  <span
+                    style="margin-top: 5px; float: unset;"
+                    class="fas fa-caret-down ROTATEshoesbrand dropdown-btn-Clothing-Shoes-Brand"
+                  ></span>
+                  <ul class="dropdown-showclothing-shoes-brand">
+                    <li><a href="/subcategory/Pant/brand/Nike"> Nike </a></li>
+                    <li>
+                      <a href="/subcategory/Shoes/brand/Adidas"> Adidas </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Shoes/brand/Jordan"> Jordan </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Shoes/brand/Goldstar">
+                        Gold Star
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Shoes/brand/Others"> Others </a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Material </a>
+                  <span
+                    style="margin-top: 5px; float: unset;"
+                    class="fas fa-caret-down ROTATEshoesmaterial dropdown-btn-Clothing-Shoes-Material"
+                  ></span>
+                  <ul class="dropdown-showclothing-shoes-material">
+                    <li>
+                      <a href="/subcategory/Shoes/material/Polyster">
+                        Polyster
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Shoes/material/Leather">
+                        Leather
+                      </a>
+                    </li>
+
+                    <li>
+                      <a href="/subcategory/Shoes/material/Others"> Others </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <!-- JACKET -->
+            <li>
+              <a href="#">Jacket </a>
+              <span
+                style="margin-top: 5px; float: unset;"
+                class="fas fa-caret-down ROTATEjacket dropdown-btn-Clothing-Jacket"
+              ></span>
+              <ul class="dropdown-showclothing-jacket">
+                <li>
+                  <a href="#">Brand </a>
+                  <span
+                    style="margin-top: 5px; float: unset;"
+                    class="fas fa-caret-down ROTATEjacketbrand dropdown-btn-Clothing-Jacket-Brand"
+                  ></span>
+                  <ul class="dropdown-showclothing-jacket-brand">
+                    <li>
+                      <a href="/subcategory/Jacket/brand/Gucci"> Gucci </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Jacket/brand/Louis Vitton">
+                        Louis Vitton
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Jacket/brand/Underarmour">
+                        Underarmour
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Jacket/brand/Wollen"> Others </a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Material </a>
+                  <span
+                    style="margin-top: 5px; float: unset;"
+                    class="fas fa-caret-down ROTATEjacketmaterial dropdown-btn-Clothing-Jacket-Material"
+                  ></span>
+                  <ul class="dropdown-showclothing-jacket-material">
+                    <li>
+                      <a href="/subcategory/Jacket/material/Wollen"> Wollen </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Jacket/material/Others"> Cotton </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Jacket/material/Polyster">
+                        Polyster
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Jacket/material/Others"> Others </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <!-- T-SHIRT -->
+            <li>
+              <a href="#">T-Shirt </a>
+              <span
+                style="margin-top: 5px; float: unset;"
+                class="fas fa-caret-down ROTATEt-shirt dropdown-btn-Clothing-T-Shirt"
+              ></span>
+              <ul class="dropdown-showclothing-t-shirt">
+                <li>
+                  <a href="#">Brand </a>
+                  <span
+                    style="margin-top: 5px; float: unset;"
+                    class="fas fa-caret-down ROTATEt-shirtbrand dropdown-btn-Clothing-T-Shirt-Brand"
+                  ></span>
+                  <ul class="dropdown-showclothing-t-shirt-brand">
+                    <li>
+                      <a href="/subcategory/T-shirt/brand/Gucci"> Gucci </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/T-shirt/brand/Louis Vitton">
+                        Louis Vitton
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/T-shirt/brand/Underarmour">
+                        Underarmour
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/T-shirt/brand/=Others"> Others </a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Material </a>
+                  <span
+                    style="margin-top: 5px; float: unset;"
+                    class="fas fa-caret-down ROTATEt-shirtmaterial dropdown-btn-Clothing-T-Shirt-Material"
+                  ></span>
+                  <ul class="dropdown-showclothing-t-shirt-material">
+                    <li>
+                      <a href="/subcategory/Coat/material/Wollen"> Wollen </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Coat/material/Cotton"> Cotton </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Coat/material/Polyster">
+                        Polyster
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Coat/material/Others"> Others </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <!-- COAT -->
+            <li>
+              <a href="/subcategory/Coat"> Coat </a>
+              <span
+                style="margin-top: 5px; float: unset;"
+                class="fas fa-caret-down ROTATEcoat dropdown-btn-Clothing-Coat"
+              ></span>
+              <ul class="dropdown-showclothing-coat">
+                <li>
+                  <a href="#">Brand </a>
+                  <span
+                    style="margin-top: 5px; float: unset;"
+                    class="fas fa-caret-down ROTATEcoatbrand dropdown-btn-Clothing-Coat-Brand"
+                  ></span>
+                  <ul class="dropdown-showclothing-coat-brand">
+                    <li><a href="/subcategory/Coat/brand/Gucci"> Gucci </a></li>
+                    <li>
+                      <a href="/subcategory/Coat/brand/Louis Vitton">
+                        Louis Vitton
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Coat/brand/Underarmour">
+                        Underarmour
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Coat/brand/Others"> Others </a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Material </a>
+                  <span
+                    style="margin-top: 5px; float: unset;"
+                    class="fas fa-caret-down ROTATEcoatmaterial dropdown-btn-Clothing-Coat-Material"
+                  ></span>
+                  <ul class="dropdown-showclothing-coat-material">
+                    <li>
+                      <a href="/subcategory/Coat/material/Wollen"> Wollen </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Coat/material/Cotton"> Cotton </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Coat/material/Polyster">
+                        Polyster
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/subcategory/Coat/material/Others"> Others </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+
+            <li><a href="/subcategory/Sock"> Sock </a></li>
+            <li><a href="/subcategory/Slippers"> Slippers </a></li>
+            <li><a href="/subcategory/Others"> Others </a></li>
+          </ul>
+        </li>
+
+        <!-- FOR ELECTRONICS -->
+        <li class="ml-2">
+          <a href="#">
+            Electronics
+          </a>
+          <span
+            class="fas fa-caret-down ROTATEelectronics dropdown-btn-Electronics"
+          ></span>
+
+          <ul class="dropdown-showelectronics">
+            <!-- CAMERA -->
+            <li>
+              <a href="/subcategory/Camera">Camera </a>
+              <span
+                style="margin-top: 5px; float: unset;"
+                class="fas fa-caret-down ROTATEcamera dropdown-btn-Electronics-Camera"
+              ></span>
+
+              <ul class="dropdown-showelectronics-camera">
+                <li><a href="/subcategory/Camera/brand/Sony"> Sony </a></li>
+                <li><a href="/subcategory/Camera/brand/Canon"> Canon </a></li>
+                <li><a href="/subcategory/Camera/brand/Nikon"> Nikon </a></li>
+                <li><a href="/subcategory/Camera/brand/Others"> Others </a></li>
+              </ul>
+            </li>
+
+            <!-- LAPTOPS -->
+            <li>
+              <a href="/subcategory/Laptop">Laptop </a>
+              <span
+                style="margin-top: 5px; float: unset;"
+                class="fas fa-caret-down ROTATElaptop dropdown-btn-Electronics-Laptop"
+              ></span>
+
+              <ul class="dropdown-showelectronics-laptop">
+                <li><a href="/subcategory/Laptop/brand/Dell"> Dell </a></li>
+                <li><a href="/subcategory/Laptop/brand/Macbook"> Macbook </a></li>
+                <li><a href="/subcategory/Laptop/brand/Acer"> Acer </a></li>
+                <li><a href="/subcategory/Laptop/brand/Hp"> Hp </a></li>
+                <li><a href="/subcategory/Laptop/brand/Others"> Others </a></li>
+              </ul>
+            </li>
+
+            <!-- PC -->
+            <li>
+              <a href="/subcategory/PC">PC </a>
+              <span
+                style="margin-top: 5px; float: unset;"
+                class="fas fa-caret-down ROTATEpc dropdown-btn-Electronics-PC"
+              ></span>
+
+              <ul class="dropdown-showelectronics-pc">
+                <li><a href="/subcategory/PC/brand/Samsung"> Samsung </a></li>
+                <li><a href="/subcategory/PC/brand/Hp"> Hp </a></li>
+                <li><a href="/subcategory/PC/brand/Imac"> IMac </a></li>
+                <li><a href="/subcategory/PC/brand/Others"> Others </a></li>
+              </ul>
+            </li>
+
+            <!-- TV -->
+            <li>
+              <a href="/subcategory/TV">Tv </a>
+              <span
+                style="margin-top: 5px; float: unset;"
+                class="fas fa-caret-down ROTATEtv dropdown-btn-Electronics-TV"
+              ></span>
+
+              <ul class="dropdown-showelectronics-tv">
+                <li><a href="/subcategory/TV/brand/Samsung"> Samsung </a></li>
+                <li><a href="/subcategory/TV/brand/LG"> LG </a></li>
+                <li><a href="/subcategory/TV/brand/Videocon"> Videocon </a></li>
+                <li><a href="/subcategory/TV/brand/Others"> Others </a></li>
+              </ul>
+            </li>
+            <!-- VIDEO PROJECTORS -->
+            <li><a href=/subcategory/VideoProjector> Video Projector </a></li>
+            <!-- MIKES -->
+            <li><a href="/subcategory/Mike"> Mike </a></li>
+            <!-- HEADPHONES -->
+            <li><a href="/subcategory/Headphones"> Headphones </a></li>
+            <!-- AIRPODS -->
+            <li><a href="/subcategory/Airpods"> Airpods </a></li>
+            <!-- Charger -->
+            <li><a href="/subcategory/Charger"> Charger </a></li>
+            <li><a href="/subcategory/Others"> Others </a></li>
+          </ul>
+        </li>
+        <!-- FOR MOBILE Phones -->
+        <li class="ml-2">
+          <a href="/category/Mobile Phones">
+            Mobile Phones
+          </a>
+          <span
+            class="fas fa-caret-down ROTATEmobilephones dropdown-btn-MobilePhones"
+          ></span>
+
+          <ul class="dropdown-showmobilephones">
+            <li><a href="/category/Mobile Phones/Huwawei"> Huwawei </a></li>
+            <li><a href="/category/Mobile Phones/Apple"> Apple </a></li>
+            <li><a href="/category/Mobile Phones/Samsung"> Samsung </a></li>
+            <li><a href="/category/Mobile Phones/Realme"> Realme </a></li>
+            <li><a href="/category/Mobile Phones/Xaomi"> Xaomi </a></li>
+            <li><a href="/category/Mobile Phones/Oppo"> Oppo </a></li>
+            <li><a href="/category/Mobile Phones/Vivo"> Vivo </a></li>
+            <li><a href="/category/Mobile Phones/One Plus"> One Plus </a></li>
+            <li><a href="/category/Mobile Phones/Motorola"> Motorola </a></li>
+            <li><a href="/category/Mobile Phones/Razor"> Razor </a></li>
+            <li><a href="/category/Mobile Phones/Nokia"> Nokia </a></li>
+            <li><a href="/category/Mobile Phones/Others"> Others </a></li>
+          </ul>
+        </li>
+
+        <!-- FOR ACCESSORIES -->
+        <li class="ml-2">
+          <a href="/category/Accessories">
+            Accessories
+          </a>
+          <span
+            class="fas fa-caret-down ROTATEaccessories dropdown-btn-Accessories"
+          ></span>
+
+          <ul class="dropdown-showaccessories">
+            <!-- WATCH -->
+            <li>
+              <a href="/subcategory/Watch">Watch </a>
+              <span
+                style="margin-top: 5px; float: unset;"
+                class="fas fa-caret-down ROTATEwatch dropdown-btn-Accessories-Watch"
+              ></span>
+              <ul class="dropdown-showaccessories-watch">
+                <li>
+                  <a href="#">Brand </a>
+                  <span
+                    style="margin-top: 5px; float: unset;"
+                    class="fas fa-caret-down ROTATEwatchbrand dropdown-btn-Accessories-Watch-Brand"
+                  ></span>
+                  <ul class="dropdown-showaccessories-watch-brand">
+                    <li><a href="/subcategory/Watch/brand/Rolex"> Rolex </a></li>
+                    <li><a href="/subcategory/Watch/brand/TimeX"> TimeX </a></li>
+                    <li><a href="/subcategory/Watch/brand/Rolex"> Niken </a></li>
+                    <li><a href="/subcategory/Watch/brand/Rolex"> Others </a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="/subcategory/Purse"> Purse </a></li>
+            <li><a href="/subcategory/Handbag"> Handbag </a></li>
+            <li><a href="/subcategory/Ring"> Ring </a></li>
+            <li><a href="/subcategory/Necklace"> Necklace </a></li>
+            <li><a href="/subcategory/Bracelet"> Bracelet </a></li>
+            <li><a href="/subcategory/Others"> Others </a></li>
+          </ul>
+        </li>
+        <!-- FOR bathroomitems -->
+        <li class="ml-2">
+          <a href="/category/Bathroom Items">
+            Bathroom Items
+          </a>
+          <span
+            class="fas fa-caret-down ROTATEbathroomitems dropdown-btn-BathroomItems"
+          ></span>
+
+          <ul class="dropdown-showbathroomitems">
+            <li><a href="/subcategory/Toothbrush & paste"> Toothbrush & paste </a></li>
+            <li><a href="/subcategory/Toilet Paper"> Toilet Paper </a></li>
+            <li><a href="/subcategory/Soap & Shampoo"> Soap & Shampoo </a></li>
+            <li><a href="/subcategory/Comod"> Comod </a></li>
+            <li><a href="/subcategory/Bathtub"> Bathtub </a></li>
+            <li><a href="/subcategory/Others"> Others </a></li>
+          </ul>
+        </li>
+
+        <!-- FOR houseitems -->
+        <li class="ml-2">
+          <a href="/category/Household Items">
+            Household Items
+          </a>
+          <span
+            class="fas fa-caret-down ROTATEhouseholditems dropdown-btn-HouseholdItems"
+          ></span>
+
+          <ul class="dropdown-showhouseholditems">
+            <li><a href="/subcategory/Curtain"> Curtains </a></li>
+            <li><a href="/subcategory/Carpet"> Carpet </a></li>
+            <li><a href="/subcategory/Bedsheet"> Bedsheet </a></li>
+            <li><a href="/subcategory/Bed"> Bed </a></li>
+            <li><a href="/subcategory/Sofa"> Sofa/Couch </a></li>
+            <li><a href="/subcategory/Chair"> Chair </a></li>
+            <li><a href="/subcategory/Table"> Table </a></li>
+            <li><a href="/subcategory/Cupboard"> Cupboard </a></li>
+            <li><a href="/subcategory/Pillow"> Pilloww </a></li>
+            <li><a href="/subcategory/Others"> Others </a></li>
+          </ul>
+        </li>
+
+        <!-- FOR stationeryitems -->
+        <li class="ml-2">
+          <a href="/category/Stationery Items">
+            Stationery Items
+          </a>
+          <span
+            class="fas fa-caret-down ROTATEstationeryitems dropdown-btn-StationeryItems"
+          ></span>
+
+          <ul class="dropdown-showstationeryitems">
+            <li><a href="/subcategory/Pen & Pencil"> Pen & Pencil </a></li>
+            <li><a href="/subcategory/Copy"> Copy </a></li>
+            <li><a href="/subcategory/Book"> Books </a></li>
+            <li><a href="/subcategory/Colors"> Colors </a></li>
+            <li><a href="/subcategory/Others"> Others </a></li>
+          </ul>
+        </li>
+      </ul>
+    </aside>
+
+   
+    {% block content %} {% endblock content %}
+  
+<!-- JAVASCRIPT FILES  -->
+   
+
+    <script  src="../../Jquery/prettify.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+
+<!-- TOP 3 LINES BUTTON JQUERY -->
+<script>
+    $(".hamburger-menu-btn").click(function () {
+      $(this).toggleClass("click");
+      $(".sidebar").toggleClass("show");
+    });
+</script>
+
+<script src="{% static 'js/base.js' %}"></script>
+
+    
+    {% block js %} {% endblock js%}
+  </body>
+</html>

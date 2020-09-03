@@ -1,0 +1,129 @@
+{% extends 'eapp/base.html' %} {% load static %}{% load socialaccount %}
+<!-- sdfsdffds -->
+{% providers_media_js %}
+<!-- fdfaf -->
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/regist.css' %}" />
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+<style>
+  body {
+    background-image: linear-gradient(
+        rgba(78, 77, 76, 0.657),
+        rgba(78, 77, 76, 0.657)
+      ),
+      url("/static/css/newbg.jpg");
+  }
+  .alert{
+    border-radius: 0px;
+  }
+  .form-control{
+    border-radius:0px
+  }
+  .btn{
+    border-radius:0px
+  }
+</style>
+{% endblock css %}
+
+<!-- adfdfwf -->
+{% block content %}
+ {% if messages %}
+<ul class="messages" style="margin-top:63px">
+  {% for message in messages %}
+  <div id="alert">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{message}}
+
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  {% endfor %}
+</ul>
+{% endif %}<br />
+
+<input id="cartvalue" type="hidden" value="{{total}}" />
+
+<div class="container">
+ 
+  <div
+    class="container-fluid"
+    style="border: 1px solid white; margin: 70px auto; width: fit-content;"
+  >
+    <article class="card-body mx-auto" style="max-width: 400px;">
+      <h4 style="color: white;" class="card-title mt-3 text-center">
+        Login Page
+      </h4>
+
+      <form method="POST">
+        {% csrf_token %}
+        <div class="form-group mt-2">
+          <input
+            type="username"
+            name="username"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="usernameHelp"
+            placeholder="Username"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            name="password"
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+            placeholder="Password"
+          />
+        </div>
+
+        <div class="form-group">
+          <button  type="submit" class="btn btn-dark btn-block">Login</button>
+        </div>
+        <!-- form-group// -->
+        <p style="color: white;" class="text-center">
+          Don't have an account?
+          <a role="button" class="btn btn-danger" style="color: white;border-radius:0px" href="{% url 'registerPage' %}">Register</a>
+        </p>
+        <h1 style="text-align: center;color:white">OR</h1>
+        <div class="background-color:white">
+          <a
+            href="{% provider_login_url 'facebook' method='oauth2' %}"
+            class="btn btn-block btn-primary btn-facebook"
+          >
+            <i class="fab fa-facebook-f"></i> Login via Facebook</a
+          >
+          <a
+            href="{% provider_login_url 'google' %}"
+            class="btn btn-block btn-success btn-google"
+          >
+            <i class="fab fa-google"></i> Login via Google</a
+          >
+        </div>
+        {% for l in li %} {{li}} {% endfor %}
+      </form>
+    </article>
+  </div>
+</div>
+
+
+{% include 'eapp/footer.html' %}
+
+
+
+{% endblock content %} {% block js %}
+<script>
+  let cart_num = document.getElementById("cartvalue").value;
+  $("#cartnumber").text(cart_num);
+  let alert = document.getElementById("alert");
+  setTimeout(() => {
+    alert.innerHTML = "";
+  }, 10000);
+</script>
+
+{% endblock js%}

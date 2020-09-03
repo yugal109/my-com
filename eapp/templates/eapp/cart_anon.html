@@ -1,0 +1,183 @@
+{% extends 'eapp/base.html' %}{% load static %} {% block css %}
+
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+<link rel="stylesheet" href="{% static 'css/cart.css' %}" />
+<style>
+  .card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+  }
+</style>
+{% endblock css %} {% block content %}
+
+
+<div style="padding-top: 70px;" >
+
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+      <div id="alert">
+      <div class="alert alert-warning alert-dismissible fade show" role="alert" style="border-radius:0px">
+        <li {% if message.tags %} {% endif %}>{{ message }}</li>
+  
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     
+     
+    </div>
+      {% endfor %}
+  </ul>
+{% endif %}</div>
+
+<input id="cartvalue" type="hidden"  value="{{tot}}">
+
+<input id="total_elements" type="hidden"  value="{{total_elements}}">
+
+
+
+<div class="container" id="cart_material">
+
+</div>
+
+
+</div>
+
+
+
+{% endblock content %} {% block js %}
+
+<script>
+let cart_num= document.getElementById("cartvalue").value
+$("#cartnumber").text(cart_num);
+if(cart_num==0){
+  let cart_material=document.getElementById("cart_material")
+    cart_material.innerHTML=`
+    <h1 style="text-align: center;color:orange;padding-top:20px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">
+    YOUR CART IS EMPTY</h1>
+     <a style="margin-top:50px;
+     font-size:1.5em;
+     border-radius:0px"
+     
+     href="{% url 'ehome' %}" class="btn btn-info btn-block" role="button"
+      aria-pressed="true" 
+      >
+      Go Shopping</a>
+    `
+  
+  }else{
+
+  let cart_material=document.getElementById("cart_material")
+  cart_material.innerHTML=`
+      <h1 style="text-align: center;color:orange;padding-top:20px;
+      font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;font-weight:700">
+      YOUR CART</h1>
+      <form  method="POST">{% csrf_token %}
+
+        <div class="row">
+          {% for final in fl %} 
+          <div class="col-sm-6 mb-3">
+            <div class="card">
+              <div class="card-body">
+                
+                <h5 class="card-title" style="font-weight:600"> {{final.0.0.name}}
+                  <input type="hidden" name="id_product{{final.3}}" value="{{final.0.0.id}}"></h5>
+                <ul style="font-weight:700">
+                  
+                  <li class="mt-2">
+                    Price( 1 item ): ${{final.0.0.discount_price_from_percent}}
+                  </li>
+                  <li class="mt-2">
+                    Quantity: {{orde.0.quantity}}
+                  </li>
+      
+                  <li class="mt-2">
+                    Total Price:  ${{final.2}}
+                  </li class="mt-2">
+                  <li class="mt-2">
+                    <button style="display:inline" type="button" id="minus{{final.3}}" class="btn btn-danger">-</button>
+                    <input style="display:inline" id="quantity{{final.3}}" class="form-control quantity_input" type="number" min=1 name="id_order{{final.3}}" value="{{final.1}}" required>
+                    <button style="display:inline" type="button" id="plus{{final.3}}" class="btn btn-primary">+</button>
+                  
+                    <input style="display:inline;float:right" type="submit" name="id_delete{{final.0.0.id}}" class="btn btn-danger" value="Delete">
+                  </li>
+                  
+      
+      
+                </ul>
+             
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div> 
+
+
+
+
+     
+  <button type="submit" name="update" class="btn btn-success">Update All</button>
+
+
+  <div  style="font-size:2em;color:rgb(248, 100, 5);font-weight:700;margin-top:10px;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
+
+    Total Quantity:<span style="margin-top:10px;;font-size:1em;border-radius:0px">{{total}}</span><br>
+
+    Total Price:<span style="margin-top:10px;;font-size:1em;border-radius:0px">  ${{totalprice}}</span><br>
+
+
+</div>
+    
+ 
+    
+      
+
+        <div class="footer" style="display:inline-block">
+          <button name="delete_all" class="btn btn-danger"   style="border-radius:0px;float:left;width:49%;color:white;font-size:1.3em">
+            Empty Cart</button>
+
+            <a href="{% url 'echeckout' %}" class="btn btn-info" role="button" aria-pressed="true" style="border-radius:0px;float:right;width:49%;color:white;font-size:1.3em">
+              Checkout</a>
+          
+          
+          </div>     </form> 
+      `
+    }
+
+
+
+  let total=document.getElementById("total_elements").value
+    
+  
+  for(let i=1;i<total+1;i++){
+    $("#plus"+i).click(function(){ 
+    $('#quantity'+i).val(parseInt($('#quantity'+i).val())+1)
+    })
+    $("#minus"+i).click(function(){
+      let value=parseInt($('#quantity'+i).val())-1
+      if(value==0){
+      $('#quantity'+i).val(1)}
+      else{
+        $('#quantity'+i).val(value)
+      }
+    })
+    
+  }
+  
+    
+    let alert = document.getElementById("alert");
+    setTimeout(() => {
+      alert.innerHTML = "";
+    }, 3000);
+    
+   </script>
+
+{% endblock js%}
+

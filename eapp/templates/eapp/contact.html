@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SideBar</title>
+    <!-- Font Awesome CDJNS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        user-select: none;
+        box-sizing: border-box;
+        text-decoration: none;
+      }
+
+      .hamburger-menu-btn {
+        position: absolute;
+        top: 15px;
+        left: 45px;
+        height: 45px;
+        width: 45px;
+        text-align: center;
+        background-color: #232f3e;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: left 0.4s ease;
+      }
+
+      .hamburger-menu-btn.click {
+        left: 260px;
+      }
+      .hamburger-menu-btn.click span::before {
+        content: "\f00d";
+      }
+
+      .hamburger-menu-btn span {
+        color: white;
+        font-size: 25px;
+        line-height: 45px;
+      }
+
+      .sidebar {
+        position: fixed;
+        width: 250px;
+        height: 100%;
+        left: -250px;
+        background-color: #232f3e;
+        overflow-y: scroll;
+      }
+
+      .sidebar::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      .sidebar::-webkit-scrollbar-track {
+        background-color: #232f3e;
+      }
+
+      .sidebar::-webkit-scrollbar-thumb {
+        background: #3a4858;
+        border-radius: 5px;
+      }
+
+      .sidebar::-webkit-scrollbar-thumb:hover {
+        background-color: #131921;
+      }
+
+      .sidebar.show {
+        left: 0px;
+        transition: left 0.4s ease;
+      }
+      aside ul {
+        background-color: #131921;
+        height: 100%;
+        width: 100%;
+        list-style-type: none;
+      }
+
+      aside ul li {
+        line-height: 50px;
+        border-bottom: 1px solid rgba(225, 225, 225, 0.1);
+      }
+
+      aside ul li a {
+        position: relative;
+        color: white;
+        font-size: 16px;
+        padding-left: 40px;
+        display: block;
+        width: 100%;
+      }
+
+      aside ul li a:hover {
+        color: cyan;
+        border-left: 3px solid cyan;
+      }
+
+      aside ul ul {
+        position: static;
+        display: none;
+      }
+
+      aside ul .dropdown-show.show {
+        display: block;
+      }
+
+      aside ul .dropdown-show2.show {
+        display: block;
+      }
+
+      aside ul .dropdown-show3.show {
+        display: block;
+      }
+
+      aside ul .dropdown-show4.show {
+        display: block;
+      }
+
+      aside ul .dropdown-show5.show {
+        display: block;
+      }
+
+      aside ul ul li {
+        line-height: 30px;
+        border-bottom: none;
+      }
+
+      aside ul ul li a {
+        font-size: 15px;
+        color: #e6e6e6;
+        padding-left: 80px;
+      }
+
+      aside ul li a span {
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+      }
+
+      aside ul li a span.rotate {
+        transform: translateY(-50%) rotate(-180deg);
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Page's CSS and JS link -->
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- <div class="container"> -->
+    <div class="hamburger-menu-btn">
+      HEY
+    </div>
+
+    <aside class="sidebar">
+      <ul>
+        <li>
+          <a href="#" class="dropdown-btn-1"
+            >Music
+            <span class="fas fa-caret-down first"></span>
+          </a>
+          <ul class="dropdown-show">
+            <li><a href="#"> Spotify </a></li>
+            <li><a href="#"> Amazon Prime </a></li>
+            <li><a href="#"> Google Music </a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-btn-2"
+            >Electronics
+            <span class="fas fa-caret-down second"></span>
+          </a>
+          <ul class="dropdown-show2">
+            <li><a href="#"> Camera </a></li>
+            <li><a href="#"> Headphones </a></li>
+            <li><a href="#"> Video Projectors </a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-btn-3"
+            >Clothing
+            <span class="fas fa-caret-down third"></span>
+          </a>
+          <ul class="dropdown-show3">
+            <li><a href="#"> Shirts </a></li>
+            <li><a href="#"> Pants </a></li>
+            <li><a href="#"> Inner Wears </a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-btn-4"
+            >Laptops
+            <span class="fas fa-caret-down fourth"></span>
+          </a>
+          <ul class="dropdown-show4">
+            <li><a href="#"> Dell </a></li>
+            <li><a href="#"> Asus </a></li>
+            <li><a href="#"> Macbooks </a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="#" class="dropdown-btn-5"
+            >Automotives
+            <span class="fas fa-caret-down fifth"></span>
+          </a>
+          <ul class="dropdown-show5">
+            <li><a href="#"> Accessories </a></li>
+            <li><a href="#"> Oils & Fluids </a></li>
+            <li><a href="#"> Replacement Parts </a></li>
+          </ul>
+        </li>
+      </ul>
+    </aside>
+    <!-- </div> -->
+
+    <script>
+      $(".hamburger-menu-btn").click(function () {
+        $(this).toggleClass("click");
+        $(".sidebar").toggleClass("show");
+      });
+
+      $(".dropdown-btn-1").click(function () {
+        $("aside ul .dropdown-show").toggleClass("show");
+        $("aside ul .first").toggleClass("rotate");
+      });
+
+      $(".dropdown-btn-2").click(function () {
+        $("aside ul .dropdown-show2").toggleClass("show");
+        $("aside ul .second").toggleClass("rotate");
+      });
+
+      $(".dropdown-btn-3").click(function () {
+        $("aside ul .dropdown-show3").toggleClass("show");
+        $("aside ul .third").toggleClass("rotate");
+      });
+
+      $(".dropdown-btn-4").click(function () {
+        $("aside ul .dropdown-show4").toggleClass("show");
+        $("aside ul .third").toggleClass("rotate");
+      });
+
+      $(".dropdown-btn-5").click(function () {
+        $("aside ul .dropdown-show5").toggleClass("show");
+        $("aside ul .third").toggleClass("rotate");
+      });
+    </script>
+  </body>
+</html>
